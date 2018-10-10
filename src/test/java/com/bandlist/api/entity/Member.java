@@ -5,13 +5,49 @@ public class Member {
 	private String role;
 	private boolean alive;
 	
-	public Member(String fullName, String role, boolean isAlive) {
-		this.full_name = fullName;
-		this.role = role;
-		this.alive = isAlive;
+	public static class Builder {
+		private String full_name;
+		private String role;
+		private boolean alive;
+		
+		public Builder full_name(String full_name) {
+			this.full_name = full_name;
+			return this;
+		}
+
+		public Builder role(String role) {
+			this.role = role;
+			return this;
+		}
+		
+		public Builder alive(boolean alive) {
+			this.alive = alive;
+			return this;
+		}
+		
+		public Member build() {
+			return new Member(this);
+		}
+	}
+	
+	private Member(Builder builder) {
+		full_name = builder.full_name;
+		role = builder.role;
+		alive = builder.alive;
+	}
+	
+	@Override
+	public String toString() {
+		return "Band{" +
+				"'full_name': '" + full_name + "'" +
+				"'role': '" + role + "'" +
+				"'alive': " + alive + "'" +
+				"}";
 	}
 
-	public String getfull_name() {
+	// getters needed for jackson bindings, to generate a json representation of this domain object.
+	
+	public String getFull_name() {
 		return full_name;
 	}
 
@@ -22,5 +58,4 @@ public class Member {
 	public boolean isAlive() {
 		return alive;
 	}
-	
 }

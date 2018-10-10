@@ -1,5 +1,10 @@
 package com.bandlist.api.band;
 
+import static io.restassured.RestAssured.delete;
+import static io.restassured.RestAssured.given;
+
+import java.util.Arrays;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,32 +12,40 @@ import org.junit.Test;
 import com.bandlist.api.entity.Band;
 import com.bandlist.api.entity.Member;
 
-import static io.restassured.RestAssured.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class TestPostBand {
 	private static final String URI = "http://localhost:4567/api/v1";
-	private List<Member> members;
 	private Band band;
 	
 	@Before
 	public void setUp() {
-		members = new ArrayList<Member>();
-		band = new Band();
-		Member m1 = new Member("Ricardo Iorio", "Singer", true);
-		Member m2 = new Member("Bin Valencia", "drummer", true);
-		Member m3 = new Member("Claudio Marciello", "guitarist", true);
-		Member m4 = new Member("Beto Ceriotti", "bassist", true);
-		members.add(m1);
-		members.add(m2);
-		members.add(m3);
-		members.add(m4);
-		
-		band.setName("Almafuerte");
-		band.setGenre("Heavy Metal");
-		band.setMembers(members);
+		band = new Band.Builder()
+						.name("Almafuerte")
+						.genre("Heavy Metal")
+						.members(
+							Arrays.asList(
+								new Member.Builder()
+									.full_name("Ricardo Iorio")
+									.role("singer")
+									.alive(true)
+									.build(),
+								new Member.Builder()
+									.full_name("Bin Valencia")
+									.role("drummer")
+									.alive(true)
+									.build(),
+								new Member.Builder()
+									.full_name("Claudio Marciello")
+									.role("guitarist")
+									.alive(true)
+									.build(),
+									new Member.Builder()
+									.full_name("Beto Ceriotti")
+									.role("bassist")
+									.alive(true)
+									.build()
+								)
+							)
+						.build();
 	}
 	
 	@Test
