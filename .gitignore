@@ -31,8 +31,8 @@ tmp/
 *~.nib
 local.properties
 .settings/
-.project/
-.classpath/
+.project
+.classpath
 .loadpath
 .recommenders
 
