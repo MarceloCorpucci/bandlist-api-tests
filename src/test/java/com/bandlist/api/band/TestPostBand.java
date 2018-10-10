@@ -59,7 +59,9 @@ public class TestPostBand {
 			.post(URI + "/bands")
 		.then()
 			.assertThat()
-			.statusCode(201);
+			.statusCode(201)
+			.log()
+			.all();
 	}
 	
 	@After
