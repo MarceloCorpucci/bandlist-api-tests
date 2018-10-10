@@ -1,0 +1,6 @@
+/home/corpu/bandlist-api-tests/src/test/java/com/bandlist/api/band/TestUpdateBand.java
+/home/corpu/bandlist-api-tests/src/test/java/com/bandlist/api/band/TestPostBand.java
+/home/corpu/bandlist-api-tests/src/test/java/com/bandlist/api/entity/Member.java
+/home/corpu/bandlist-api-tests/src/test/java/com/bandlist/api/band/TestDeleteBand.java
+/home/corpu/bandlist-api-tests/src/test/java/com/bandlist/api/entity/Band.java
+/home/corpu/bandlist-api-tests/src/test/java/com/bandlist/api/band/TestGetBand.java

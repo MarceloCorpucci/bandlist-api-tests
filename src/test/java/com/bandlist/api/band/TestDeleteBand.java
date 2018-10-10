@@ -1,19 +1,16 @@
 package com.bandlist.api.band;
 
-import static io.restassured.RestAssured.delete;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.hasItems;
 
 import java.util.Arrays;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.bandlist.api.entity.Band;
 import com.bandlist.api.entity.Member;
 
-public class TestGetBand {
+public class TestDeleteBand {
 	private static final String URI = "http://localhost:4567/api/v1";
 	private Band band;
 	
@@ -39,7 +36,7 @@ public class TestGetBand {
 									.role("guitarist")
 									.alive(true)
 									.build(),
-									new Member.Builder()
+								new Member.Builder()
 									.full_name("Beto Ceriotti")
 									.role("bassist")
 									.alive(true)
@@ -56,24 +53,14 @@ public class TestGetBand {
 	}
 	
 	@Test
-	public void bandAccessedSuccessfuly() {
+	public void bandDeletedSuccessfuly() {
 		given()
 			.contentType("application/json")
 		.when()
-			.get(URI + "/bands/" + band.getName())
+			.delete(URI + "/bands/" + band.getName())
 		.then()
 			.assertThat()
-			.body("members.full_name", hasItems(
-										"Ricardo Iorio", 
-										"Bin Valencia", 
-										"Claudio Marciello", 
-										"Beto Ceriotti"))
-			.log()
-			.all();
+			.statusCode(204);
 	}
-	
-	@After
-	public void tearDown() {
-		delete(URI + "/bands/" + band.getName());
-	}
+
 }
